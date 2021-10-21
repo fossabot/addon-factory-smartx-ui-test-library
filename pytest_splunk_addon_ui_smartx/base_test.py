@@ -330,7 +330,7 @@ class SeleniumHelper(object):
         try:
             retries = 0
             while retries < 3:
-                response = requests.get("https://api.us-west-1.saucelabs.com/rest/v1/info/platforms/webdriver", verify=False)
+                response = requests.get("https://api.us-west-1.saucelabs.com/rest/v1/info/platforms/webdriver", verify=False) # nosemgrep
                 if response.status_code != 200:
                     logger.debug("Error retrieving supported webdrivers for saucelabs, retrying...")
                     logger.debug("Status Code: " + str(response.status_code))
@@ -402,7 +402,7 @@ class RestHelper(object):
     @backend_retry(3)
     def start_session(self):
         res = requests.post(self.splunk_mgmt_url + '/services/auth/login?output_mode=json',
-                            data={'username': self.username, 'password': self.password }, verify=False)
+                            data={'username': self.username, 'password': self.password }, verify=False) # nosemgrep
 
         try:
             res = res.json()

@@ -44,7 +44,7 @@ class BackendConf(object):
             :param url: url to call
             :returns: json result of the request
         """
-        res = requests.get(url, auth=(self.username, self.password), verify=False)
+        res = requests.get(url, auth=(self.username, self.password), verify=False) # nosemgrep
         assert res.status_code == 200, "url={}, status_code={}, error_msg={}".format(url,res.status_code, res.text)
         return res.json()
     
@@ -57,7 +57,7 @@ class BackendConf(object):
             :param kwargs: body of request method
             :returns: json result of the request
         """
-        res = requests.post(url, kwargs, auth=(self.username, self.password), verify=False)
+        res = requests.post(url, kwargs, auth=(self.username, self.password), verify=False) # nosemgrep
         assert res.status_code == 200 or res.status_code == 201, "url={}, status_code={}, error_msg={}".format(url,res.status_code, res.text)
         return res.json()
 
@@ -67,7 +67,7 @@ class BackendConf(object):
             :param url: url to call
             :returns: json result of the request
         """
-        res = requests.delete(url, auth=(self.username, self.password), verify=False)
+        res = requests.delete(url, auth=(self.username, self.password), verify=False) # nosemgrep
         assert res.status_code == 200 or res.status_code == 201, "url={}, status_code={}, error_msg={}".format(url,res.status_code, res.text)
 
     def parse_conf(self, json_res, single_stanza=False):
