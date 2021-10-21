@@ -225,7 +225,7 @@ jobs:
           cp -r tests/deps/splunk-add-on-for-ucc-example/output output
       - name: Splunk Testing
         run: |
-          cat tests/deps/build/addonfactory_test_matrix_splunk/sc4s_matrix.conf
+          cat tests/deps/build/addonfactory_test_matrix_splunk/SC4S_matrix.conf
           export SPLUNK_VERSION=$(crudini --get tests/deps/build/addonfactory_test_matrix_splunk/splunk_matrix.conf "${{ matrix.splunk }}" VERSION)
           export SPLUNK_APP_ID=$(crudini --get tests/deps/splunk-add-on-for-ucc-example/package/default/app.conf id name)
           export SPLUNK_APP_PACKAGE=tests/deps/splunk-add-on-for-ucc-example/output/$(ls tests/deps/splunk-add-on-for-ucc-example/output/)
