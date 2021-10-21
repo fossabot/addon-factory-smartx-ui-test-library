@@ -401,7 +401,7 @@ class RestHelper(object):
 
     @backend_retry(3)
     def start_session(self):
-        res = requests.post(self.splunk_mgmt_url + '/services/auth/login?output_mode=json',
+        res = requests.post(self.splunk_mgmt_url + '/services/auth/login?output_mode=json',# nosemgrep
                             data={'username': self.username, 'password': self.password }, verify=False) # nosemgrep
 
         try:
