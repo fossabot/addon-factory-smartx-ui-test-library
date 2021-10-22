@@ -184,27 +184,34 @@ jobs:
 
   run-ui-tests:
     if: always()
+    needs:
+      - build
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         splunk: ["8.2"]
-        browser: ["chrome"]
+        browser: ["chrome", "firefox", "firefox_grid", "chrome_grid"]
         test_suit: [
           "test_splunk_ta_example_addon_logging",
+          "test_splunk_ta_example_addon_account",
+          "test_splunk_ta_example_addon_proxy",
+          "test_splunk_ta_example_addon_input",
+          "test_splunk_ta_example_addon_custom",
+          "test_splunk_ta_example_addon_alert_actions"
         ]
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+      - uses: actions/download-artifact@v2
+        with:
+          name: package
+          path: dist/
       - name: update submodule
         run: |
-            ls -al
             git submodule sync
-            git submodule update --init --recursive
             git submodule update --recursive --remote
-            cd tests/deps/build/addonfactory_test_matrix_splunk
-            git status
       - name: Downloading Example-TA
         run: |
             cd tests/deps/splunk-add-on-for-ucc-example
