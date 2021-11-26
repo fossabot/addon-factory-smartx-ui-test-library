@@ -29,7 +29,7 @@
           "replacements": [
             {
               "files": ["pytest_splunk_addon_ui_smartx/__init__.py"],
-              "from": "__version__ ?=.*",
+              "from": "__version__ = \"[0-9]+.[0-9]+.[0-9]+\"",
               "to": "__version__ = \"${nextRelease.version}\"",
               "results": [
                 {
